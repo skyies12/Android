@@ -1,4 +1,4 @@
-package com.study.android.ex09_alert;
+package com.study.android.ex20_list6;
 
 import android.app.AlertDialog;
 import android.content.Context;

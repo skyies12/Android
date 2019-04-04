@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 
+import net.daum.android.map.MapView;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
