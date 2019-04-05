@@ -42,26 +42,14 @@ public class SingleAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         // SingerItemView view = new SingerItemView(getApplicationContext());
 
-        SingerItemView view = null;
-        if(convertView == null) {
-            view = new SingerItemView(context);
-        } else {
-            view = (SingerItemView)convertView;
-        }
-
         final SingerItem item = items.get(position);
+        int viewType = item.getGender();
 
-        Log.d("lecture", item.getGender());
+        SingerItemView view = new SingerItemView(context, viewType);
 
-        if(item.getGender().equals("man")) {
-            view.layout1();
-        } else if(item.getGender().equals("woman")) {
-            view.layout2();
-        }
         view.setName(item.getName());
         view.setPhone(item.getPhone());
         view.setImage(item.getsId());
-        view.setGender(item.getGender());
 
         Button button1 = view.findViewById(R.id.call);
         button1.setFocusable(false);
@@ -84,7 +72,6 @@ public class SingleAdapter extends BaseAdapter {
                 context.startActivity(intent);
             }
         });
-
         return view;
     }
 }

@@ -14,39 +14,38 @@ public class SingerItemView extends LinearLayout {
     TextView textView1;
     TextView textView2;
     ImageView imageView;
-    String gender = "";
-    LayoutInflater inflater;
 
 
-    public SingerItemView(Context context) {
+    public SingerItemView(Context context, int kind) {
         super(context);
 
-        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         //inflater.inflate(R.layout.singer_item_view_man, this, true);
+        if(kind == 1) {
+            inflater.inflate(R.layout.singer_item_view_woman, this, true);
+            textView1 = findViewById(R.id.textView);
+            textView2 = findViewById(R.id.textView2);
+            imageView = findViewById(R.id.imageView2);
+        } else if(kind == 0){
+            inflater.inflate(R.layout.singer_item_view_man, this, true);
+            textView1 = findViewById(R.id.textView);
+            textView2 = findViewById(R.id.textView2);
+            imageView = findViewById(R.id.imageView2);
+        } else {
+            inflater.inflate(R.layout.singer_item_view_noimage, this, true);
+            textView1 = findViewById(R.id.textView);
+            textView2 = findViewById(R.id.textView2);
+            imageView = findViewById(R.id.imageView2);
+        }
 
-
-        textView1 = findViewById(R.id.textView);
-        textView2 = findViewById(R.id.textView2);
-        imageView = findViewById(R.id.imageView2);
     }
 
     public void setName(String name) {
         textView1.setText(name);
     }
     public void setPhone(String phone) {textView2.setText(phone);}
-
     public void setImage(int imgNum) {
         imageView.setImageResource(imgNum);
     }
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 
-    public void layout1() {
-        inflater.inflate(R.layout.singer_item_view_man, this, true);
-    }
-
-    public void layout2() {
-        inflater.inflate(R.layout.singer_item_view_woman, this, true);
-    }
 }

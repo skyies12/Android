@@ -3,14 +3,10 @@ package com.study.android.examplephone;
 public class SingerItem {
     private String name;
     private String phone;
-    private String gender;
+    private int gender;
     private int sId;
 
-    public SingerItem() {
-
-    }
-
-    public SingerItem(String name, String phone, int sId, String gender) {
+    public SingerItem(String name, String phone, int sId, int gender) {
         this.name = name;
         this.phone = phone;
         this.sId = sId;
@@ -41,11 +37,11 @@ public class SingerItem {
         this.sId = sId;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 }
