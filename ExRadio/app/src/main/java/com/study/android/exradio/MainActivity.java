@@ -1,7 +1,9 @@
 package com.study.android.exradio;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -9,7 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class
+MainActivity extends AppCompatActivity implements View.OnClickListener {
+    MediaPlayer mp;
+    int playbackPosition = 0;
+
     private Button button1;
     private Button button2;
     private Button button3;
@@ -22,6 +28,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button button10;
     int i = 1;
    TextView textView;
+
+    private Button startbutton;
+    private Button pausebutton;
+    private Button stopbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +51,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         textView = findViewById(R.id.editText);
 
+        startbutton = findViewById(R.id.button);
+        stopbutton = findViewById(R.id.button4);
+        pausebutton = findViewById(R.id.button5);
+
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
@@ -56,9 +70,167 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
    @Override
     public void onClick(View v) {
        String temp = "";
+
        temp = ((Button) v).getTag().toString();
-       Log.d("lecture", temp);
        temp = textView.getText() + temp;
+       //Log.d("lecture", temp);
        textView.setText(temp);
+    }
+
+    public void onBtn1Clicked(View v) {
+
+        String temp = textView.getText().toString();
+        Log.d("lecture", temp);
+        if(temp.equals("0001")) {
+            mp = MediaPlayer.create(this, R.raw.song);
+            mp.seekTo(0);
+            mp.start();
+
+            stopbutton.setVisibility(View.VISIBLE);
+            pausebutton.setVisibility(View.GONE);
+            startbutton.setVisibility(View.GONE);
+        } else if(temp.equals("0002")) {
+            mp = MediaPlayer.create(this, R.raw.black);
+            mp.seekTo(0);
+            mp.start();
+
+            stopbutton.setVisibility(View.VISIBLE);
+            pausebutton.setVisibility(View.GONE);
+            startbutton.setVisibility(View.GONE);
+        } else if(temp.equals("0003")) {
+            mp = MediaPlayer.create(this, R.raw.basick);
+            mp.seekTo(0);
+            mp.start();
+
+            stopbutton.setVisibility(View.VISIBLE);
+            pausebutton.setVisibility(View.GONE);
+            startbutton.setVisibility(View.GONE);
+        } else if(temp.equals("0004")) {
+            mp = MediaPlayer.create(this, R.raw.cheetah);
+            mp.seekTo(0);
+            mp.start();
+
+            stopbutton.setVisibility(View.VISIBLE);
+            pausebutton.setVisibility(View.GONE);
+            startbutton.setVisibility(View.GONE);
+        } else if(temp.equals("0005")) {
+            mp = MediaPlayer.create(this, R.raw.crush);
+            mp.seekTo(0);
+            mp.start();
+
+            stopbutton.setVisibility(View.VISIBLE);
+            pausebutton.setVisibility(View.GONE);
+            startbutton.setVisibility(View.GONE);
+        } else if(temp.equals("0006")) {
+            mp = MediaPlayer.create(this, R.raw.lonely);
+            mp.seekTo(0);
+            mp.start();
+
+            stopbutton.setVisibility(View.VISIBLE);
+            pausebutton.setVisibility(View.GONE);
+            startbutton.setVisibility(View.GONE);
+        } else if(temp.equals("0007")) {
+            mp = MediaPlayer.create(this, R.raw.rooftop);
+            mp.seekTo(0);
+            mp.start();
+
+            stopbutton.setVisibility(View.VISIBLE);
+            pausebutton.setVisibility(View.GONE);
+            startbutton.setVisibility(View.GONE);
+        } else if(temp.equals("0008")) {
+            mp = MediaPlayer.create(this, R.raw.kassy);
+            mp.seekTo(0);
+            mp.start();
+
+            stopbutton.setVisibility(View.VISIBLE);
+            pausebutton.setVisibility(View.GONE);
+            startbutton.setVisibility(View.GONE);
+        } else if(temp.equals("0009")) {
+            mp = MediaPlayer.create(this, R.raw.spring);
+            mp.seekTo(0);
+            mp.start();
+
+            stopbutton.setVisibility(View.VISIBLE);
+            pausebutton.setVisibility(View.GONE);
+            startbutton.setVisibility(View.GONE);
+        } else if(temp.equals("0010")) {
+            mp = MediaPlayer.create(this, R.raw.fallin);
+            mp.seekTo(0);
+            mp.start();
+
+            stopbutton.setVisibility(View.VISIBLE);
+            pausebutton.setVisibility(View.GONE);
+            startbutton.setVisibility(View.GONE);
+        }
+    }
+    public void onBtn3Clicked(View v) {
+        String temp = textView.getText().toString();
+        Log.d("lecture", temp);
+        if(mp != null) {
+            if(temp.equals("0001")) {
+                mp = MediaPlayer.create(this, R.raw.song);
+                mp.seekTo(0);
+                mp.start();
+            } else if(temp.equals("0002")) {
+                mp = MediaPlayer.create(this, R.raw.black);
+                mp.seekTo(0);
+                mp.start();
+            } else if(temp.equals("0003")) {
+                mp = MediaPlayer.create(this, R.raw.basick
+                );
+                mp.seekTo(0);
+                mp.start();
+            } else if(temp.equals("0004")) {
+                mp = MediaPlayer.create(this, R.raw.cheetah);
+                mp.seekTo(0);
+                mp.start();
+            } else if(temp.equals("0005")) {
+                mp = MediaPlayer.create(this, R.raw.crush);
+                mp.seekTo(0);
+                mp.start();
+            } else if(temp.equals("0006")) {
+                mp = MediaPlayer.create(this, R.raw.lonely);
+                mp.seekTo(0);
+                mp.start();
+            } else if(temp.equals("0007")) {
+                mp = MediaPlayer.create(this, R.raw.rooftop);
+                mp.seekTo(0);
+                mp.start();
+            } else if(temp.equals("0008")) {
+                mp = MediaPlayer.create(this, R.raw.kassy);
+                mp.seekTo(0);
+                mp.start();
+            } else if(temp.equals("0009")) {
+                mp = MediaPlayer.create(this, R.raw.spring);
+                mp.seekTo(0);
+                mp.start();
+            } else if(temp.equals("0010")) {
+                mp = MediaPlayer.create(this, R.raw.fallin);
+                mp.seekTo(0);
+                mp.start();
+            }else {
+                mp.seekTo(playbackPosition);
+                mp.start();
+            }
+        }
+
+        stopbutton.setVisibility(View.VISIBLE);
+        startbutton.setVisibility(View.GONE);
+        pausebutton.setVisibility(View.GONE);
+
+    }
+
+
+    public void onBtn2Clicked(View v) {
+        if(mp != null) {
+            mp.pause();
+            playbackPosition = mp.getCurrentPosition();
+            textView.setText("");
+
+        }
+
+        stopbutton.setVisibility(View.GONE);
+        startbutton.setVisibility(View.GONE);
+        pausebutton.setVisibility(View.VISIBLE);
     }
 }

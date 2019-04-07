@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_width="360dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/digit_back1"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -19,17 +22,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:maxLength="4"
+            android:fontFamily="sans-serif"
 
-            android:textAlignment="center" />
+            android:maxLength="4"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="40sp"
+            android:typeface="monospace" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical"
+        android:padding="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +52,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:background="@drawable/btn_test2"
-                android:tag="1"/>
+                android:tag="1" />
 
 
             <Button
@@ -120,7 +130,56 @@
                 android:id="@+id/imageButton10"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/btn_test1"/>
+                android:background="@drawable/btn_test1"
+                android:tag="0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_play"
+                android:onClick="onBtn1Clicked"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_play"
+                android:onClick="onBtn3Clicked"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/btn_pause"
+                android:onClick="onBtn2Clicked"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_test_back" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/btn_test_forward" />
 
         </LinearLayout>
 
