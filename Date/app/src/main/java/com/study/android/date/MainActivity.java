@@ -46,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
         int month = c.get(Calendar.MONTH) + 1;
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        if(month < 10 || day < 10) {
-            button.setText("0" + month + "/0" + day + "/" + year);
-            button1.setText("0" + month + "/0" + day + "/" + year);
+        if(month < 10) {
+            button.setText("0" + month + "/" + day + "/" + year);
+            button1.setText("0" + month + "/" + day + "/" + year);
         } else {
             button.setText(month + "/" + day + "/" + year);
             button1.setText(month + "/" + day + "/" + year);
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     public void btn1OnClicked(View v) {
         final Calendar c = Calendar.getInstance();
         int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
+        int mMonth = c.get(Calendar.MONTH)+1;
         int mDay = c.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        if(month < 10) {
-                            button1.setText("0" + (month + 1) + "/0" + dayOfMonth + "/" + year);
+                        if((month+1) < 10) {
+                            button1.setText("0" + (month + 1) + "/" + dayOfMonth + "/" + year);
                             calDateBetweenAandB(year + "-" + "0" + (month + 1) + "-" + dayOfMonth);
                         } else {
                             button1.setText((month + 1) + "/" + dayOfMonth + "/" + year);
