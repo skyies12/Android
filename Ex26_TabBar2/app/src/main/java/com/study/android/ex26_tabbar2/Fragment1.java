@@ -16,13 +16,7 @@ public class Fragment1 extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.fragment_fragment1, container, false);
 
-        Button button = rootView.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Fragment1");
-            }
-        });
         return rootView;
     }
 }
+
