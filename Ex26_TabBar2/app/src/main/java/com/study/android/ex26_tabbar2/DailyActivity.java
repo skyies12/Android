@@ -1,12 +1,11 @@
-package com.study.android.movietest;
+package com.study.android.ex26_tabbar2;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Button;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -9,10 +9,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     private ArrayList<MovieItem> mDataset;
+    private Context context;
+
+    public Adapter(Context context, ArrayList<MovieItem> list) {
+        this.context = context;
+        this.mDataset = list;
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_rank, tv_movieNm, tv_openDt, tv_salesAmt, tv_oldnew;
