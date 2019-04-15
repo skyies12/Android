@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 JsonParser parser = new JsonParser();
                 //제공되는 오픈API데이터에서 어떤 항목을 가여올지 설정해야 하는데.... 음~
                 JsonElement rootObject = parser.parse(response.body().charStream())
-                        .getAsJsonObject().get("Data"); //원하는 항목(?)까지 찾아 들어가야 한다.
+                        .getAsJsonObject().get("Result"); //원하는 항목(?)까지 찾아 들어가야 한다.
                 MovieItem[] posts = gson.fromJson(rootObject, MovieItem[].class);
 
                 return posts;
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
 //                    Log.d(TAG, post.getMovieNm());//영화제목 출력
 //                    Log.d(TAG, post.getOpenDt());//개봉일 출력
                     tv_result.append(post.getDirectorNm()+"\n");
+
                 }
             }
         }

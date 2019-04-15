@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     private ArrayList<MovieItem> mDataset;
+    private Context mContext;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_rank, tv_movieNm, tv_openDt, tv_salesAmt, tv_oldnew;

@@ -66,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
         protected MovieItem[] doInBackground(String... params) {
 
             //파라미터를 더해 주거나 authentication header를 추가할 수 있다.
-            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json").newBuilder();
-            urlBuilder.addQueryParameter("key","8dba7bdefdaded72068428af435555d4");
-            urlBuilder.addQueryParameter("targetDt","20190411"); //날짜는 현재 날짜를 계산해서 어제날짜로 실시간 변경해 줘야 한다.
+            HttpUrl.Builder urlBuilder = HttpUrl.parse("http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=8dba7bdefdaded72068428af435555d4&targetDt=20190411").newBuilder();
+//            urlBuilder.addQueryParameter("key","8dba7bdefdaded72068428af435555d4");
+//            urlBuilder.addQueryParameter("targetDt","20190411"); //날짜는 현재 날짜를 계산해서 어제날짜로 실시간 변경해 줘야 한다.
             String url = urlBuilder.build().toString();
 
             Request request = new Request.Builder()
