@@ -1,10 +1,12 @@
 package com.study.android.naversearch;
 
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "lecture";
     EditText editText;
     public static StringBuilder searchResult;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,13 +26,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView( R.layout.activity_main );
 
         editText = findViewById( R.id.editText );
+        textView = findViewById( R.id.textView2 );
 
     }
 
     public void onclick(View v) {
         String text1 = editText.getText().toString();
         Log.d( TAG,text1 );
-        searchNaver( text1);
+        searchNaver(text1);
     }
 
     public void searchNaver(final String searchObject) { // 검색어 = searchObject로 ;
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     String text = URLEncoder.encode(searchObject, "UTF-8");
-                    String apiURL = "https://openapi.naver.com/v1/search/movie?query=" + text + "&display=" + display + "&"; // json 결과
+                    String apiURL = "https://openapi.naver.com/v1/search/movie?query=" + text + "&display=" + display; // json 결과
                     // Json 형태로 결과값을 받아옴.
                     URL url = new URL(apiURL);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -74,22 +78,37 @@ public class MainActivity extends AppCompatActivity {
                     con.disconnect();
 
                     String data = searchResult.toString();
-                    Log.d(TAG,data );
+
+                    // Log.d(TAG,data );
                     String[] array;
                     array = data.split("\"");
+
                     String[] title = new String[display];
                     String[] image = new String[display];
+                    String[] director = new String[display];
+                    String[] actor = new String[display];
+                    String[] userRating = new String[display];
 
                     int k = 0;
                     for (int i = 0; i < array.length; i++) {
+                        //Log.d(TAG, Integer.toString(i));
                         if (array[i].equals("title"))
                             title[k] = array[i + 2];
                         if (array[i].equals("image"))
                             image[k] = array[i + 2];
+                        if (array[i].equals("director"))
+                            director[k] = array[i + 2];
+                        if (array[i].equals("actor"))
+                            actor[k] = array[i + 2];
+                        if (array[i].equals("userRating"))
+                            userRating[k] = array[i + 2];
                     }
+                    Log.d(TAG, "title잘나오니: " + title[0] + title[1] + title[2]);
 
-                    Log.d(TAG, "title 잘나오니: " + title[0] + image[1]);
                     // title[0], link[0], bloggername[0] 등 인덱스 값에 맞게 검색결과를 변수화하였다.
+
+                    textView.setText("제목 : " + title[0] + "\n포스터 : " + image[0] + "\n감독 : " + director[0] + "\n배우 : " + actor[0] + "\n평점 : " + userRating[0]);
+                    //textView.setText( data );
 
                 } catch (Exception e) {
                     Log.d(TAG, "error : " + e);

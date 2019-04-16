@@ -63,7 +63,7 @@ public class MovieFragment extends Fragment {
             }
         }).execute(url);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        // recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         mLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(mLayoutManager);
 

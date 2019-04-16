@@ -1,11 +1,14 @@
 package com.study.android.kswprojecjt;
 
+import android.graphics.Bitmap;
+
 public class Movie {
     private int rank;
     private String movieNm;
     private String openDt;
     private long salesAmt;  //int? long으로 해주면 되나???
     private String rankOldAndNew;
+    private String photo;
 
     //
     public Movie(int rank, String movieNm, String openDt, long salesAmt, String rankOldAndNew) {
@@ -16,7 +19,18 @@ public class Movie {
         this.rankOldAndNew = rankOldAndNew;
     }
 
+    public Movie(int rank, String movieNm, String openDt, long salesAmt, String rankOldAndNew, String photo) {
+        this.rank = rank;
+        this.movieNm = movieNm;
+        this.openDt = openDt;
+        this.salesAmt = salesAmt;
+        this.rankOldAndNew = rankOldAndNew;
+        this.photo = photo;
+    }
 
+    public String getPhoto() {
+        return photo;
+    }
 
     //사용자가 입력할일은 없으니 set은 필요가 없고 get만 필요한듯 하다.
 
