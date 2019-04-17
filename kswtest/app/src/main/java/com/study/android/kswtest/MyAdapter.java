@@ -1,6 +1,7 @@
 package com.study.android.kswtest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -74,6 +75,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             public void onClick(View v) {
                 Context context = v.getContext();
                 Toast.makeText(context, String.valueOf(mList.get(position).getTitle()), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, MovieinfoActivity.class);
+                intent.putExtra("title", String.valueOf(mList.get(position).getTitle()));
+
+                context.startActivity( intent );
             }
         });
     }

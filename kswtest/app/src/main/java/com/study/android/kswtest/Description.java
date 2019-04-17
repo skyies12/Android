@@ -2,6 +2,7 @@ package com.study.android.kswtest;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -64,6 +65,7 @@ public class Description extends AsyncTask<String, Void, ItemObject[]> {
                 list.add(new ItemObject(my_title, my_imgUrl, my_opdate, my_rank, my_salesAmt));
             }
             ItemObject[] post = list.toArray(new ItemObject[list.size()]);
+
             // Log.d("lecture", );
             return post;
         } catch (IOException e) {
