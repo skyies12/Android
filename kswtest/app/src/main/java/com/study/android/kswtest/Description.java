@@ -63,6 +63,7 @@ public class Description extends AsyncTask<String, Void, ItemObject[]> {
                 //Log.d("test", "test" + mTitle);
                 //ArrayList에 계속 추가한다.
                 list.add(new ItemObject(my_title, my_imgUrl, my_opdate, my_rank, my_salesAmt));
+
             }
             ItemObject[] post = list.toArray(new ItemObject[list.size()]);
 

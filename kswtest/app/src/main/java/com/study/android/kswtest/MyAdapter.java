@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.textView_salesAmt.setText("일간 " + String.valueOf(mList.get(position).getSalesAmt()));
 
         Picasso.with(holder.itemView.getContext()).load(mList.get(position).getImg_url()).into(holder.imageView_img);
+        Log.d("lecture", mList.get(position).getImg_url() );
 
         // 리스트 클릭
         holder.itemView.setOnClickListener(new View.OnClickListener() {

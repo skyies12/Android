@@ -1,6 +1,7 @@
 package com.study.android.kswtest;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -69,7 +70,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
         holder.textView_userRating.setText("평점 : " + String.valueOf(mList.get(position).getUserRating()));
         if (mList.get(position).getImage().equals( "" )) {
-            holder.imageView_img.setImageResource( R.drawable.face1 );
+            holder.imageView_img.setImageResource( R.drawable.noimage );
         } else {
             Picasso.with(holder.itemView.getContext()).load(mList.get(position).getImage()).into(holder.imageView_img);
         }
