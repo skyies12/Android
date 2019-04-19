@@ -5,14 +5,22 @@ public class ItemObject {
     private String img_url;
     private String openDt;
     private String rank;
-    private String salesAmt;
+    private String link;
+    private String url;
 
-    public ItemObject(String title, String img_url, String openDt, String rank, String salesAmt) {
+    public ItemObject(String title, String img_url, String openDt, String rank, String link) {
         this.title = title;
         this.img_url = img_url;
         this.openDt = openDt;
         this.rank = rank;
-        this.salesAmt = salesAmt;
+        this.link = link;
+    }
+
+    public ItemObject(String title, String img_url, String openDt, String rank) {
+        this.title = title;
+        this.img_url = img_url;
+        this.openDt = openDt;
+        this.rank = rank;
     }
 
     public String getTitle() {
@@ -31,7 +39,7 @@ public class ItemObject {
         return rank;
     }
 
-    public String getSalesAmt() {
-        return salesAmt;
+    public String getLink() {
+        return link;
     }
 }

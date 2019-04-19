@@ -117,8 +117,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //             startActivity(new Intent(this, LoginActivity.class));
 //         }
 
+
+
          //유저가 있다면, null이 아니면 계속 진행
-         FirebaseUser user = firebaseAuth.getCurrentUser();
+         //FirebaseUser user = firebaseAuth.getCurrentUser();
 //         if(user == null) {
 //             textViewUserEmail.setText("로그인 해주세요");
 //             btnLogin.setVisibility(View.VISIBLE);

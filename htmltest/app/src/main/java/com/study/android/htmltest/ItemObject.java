@@ -7,6 +7,10 @@ public class ItemObject {
     private String rank;
     private String salesAmt;
 
+    public ItemObject(String title) {
+        this.title = title;
+    }
+
     public ItemObject(String title, String img_url, String openDt, String rank, String salesAmt) {
         this.title = title;
         this.img_url = img_url;

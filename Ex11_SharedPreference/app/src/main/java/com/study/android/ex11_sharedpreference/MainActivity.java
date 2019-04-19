@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         String id = pref.getString("id", "");
         String pwd = pref.getString("pwd", "");
 
+
         Log.d("lecture","id : " + id);
 
         tvID.setText(id);
@@ -39,15 +40,21 @@ public class MainActivity extends AppCompatActivity {
 
         // 체크박스 이벤트
         checkBox = findViewById(R.id.checkBox);
+
         checkBox.setOnClickListener(new CheckBox.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String sId = tvID.getText().toString();
-                String sPwd = tvPwd.getText().toString();
+                if (((CheckBox)v).isChecked()) {
+                    // TODO : CheckBox is checked.
+                    String sId = tvID.getText().toString();
+                    String sPwd = tvPwd.getText().toString();
 
-                editor.putString("id",sId);
-                editor.commit();
-                MyUtil.AlertShow(MainActivity.this, "아이디 저장","알림");
+                    editor.putString("id",sId);
+                    editor.commit();
+                    MyUtil.AlertShow(MainActivity.this, "아이디 저장","알림");
+                } else {
+                    // TODO : CheckBox is unchecked.
+                }
             }
         });
 

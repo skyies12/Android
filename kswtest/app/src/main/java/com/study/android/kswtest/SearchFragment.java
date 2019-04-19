@@ -45,18 +45,23 @@ public class SearchFragment extends Fragment {
 
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     String str = editText.getText().toString();
+
+                    if(str.equals("")) {
+                        editText.setHint("영화 제목 입력해주세요." );
+                    } else {
+                        new NaverSearchTask( getContext(), new NaverTaskCompleted() {
+                            @Override
+                            public void onNaverTaskComplete(SearchItem[] result) {
+                                for (SearchItem p : result) {
+                                    movieList.add(p);
+                                }
+                                adapter = new SearchAdapter(movieList, getContext() );
+                                recyclerView.setAdapter(adapter);
+                            }
+                        } ).execute( str );
+                    }
                     movieList.clear();
 
-                    new NaverSearchTask( getContext(), new NaverTaskCompleted() {
-                        @Override
-                        public void onNaverTaskComplete(SearchItem[] result) {
-                            for (SearchItem p : result) {
-                                movieList.add(p);
-                            }
-                            adapter = new SearchAdapter(movieList, getContext() );
-                            recyclerView.setAdapter(adapter);
-                        }
-                    } ).execute( str );
                     downKeyboard(getContext(), editText);
                     return true;
                 }

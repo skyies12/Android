@@ -43,26 +43,27 @@ public class Description extends AsyncTask<String, Void, ItemObject[]> {
         String url = params[0];
         try {
             Document doc = Jsoup.connect(url).get();
-            Elements mElementDataSize = doc.select("._content:nth-child(1) ul").select("li"); //필요한 녀석만 꼬집어서 지정
+            Elements mElementDataSize = doc.select("#mArticle .list_movie").select("li"); //필요한 녀석만 꼬집어서 지정
             int mElementSize = mElementDataSize.size(); //목록이 몇개인지 알아낸다. 그만큼 루프를 돌려야 하나깐.
 
-            Log.d("lecture", Integer.toString(mElementSize));
+            // Log.d("lecture", Integer.toString(mElementSize));
 
             for(Element elem : mElementDataSize) { //이렇게 요긴한 기능이
                 //영화목록 <li> 에서 다시 원하는 데이터를 추출해 낸다.
-                String my_title = elem.select( "li .movie_info a strong" ).text();
-//                    String my_link = elem.select("li div[class=thumb] a").attr("href");
-                String my_imgUrl = elem.select( "li div[class=thumb] a img" ).attr( "src" );
+                String my_title = elem.select("li .wrap_movie .info_tit a").text();
+                String my_link = elem.select("li .wrap_movie .info_tit a").attr("href");
+                String my_imgUrl = elem.select("li .info_movie .thumb_movie img").attr("src");
+                String my_Url = elem.select( "li div[class=thumb] a" ).attr( "href" );
                 //특정하기 힘들다... 저 앞에 있는집의 오른쪽으로 두번째집의 건너집이 바로 우리집이야 하는 식이다.
 //                    Element rElem = elem.select("dl[class=info_txt1] dt").next().first();
 //                    String my_release = rElem.select("dd").text();
 //                    Element dElem = elem.select("dt[class=tit_t2]").next().first();
-                String my_rank = elem.select( "li .movie_info a span span" ).text();
-                String my_opdate = elem.select( "li .movie_info .movie_item dd:nth-child(2)" ).text();
-                String my_salesAmt = elem.select( "li .movie_info .movie_item dd:nth-child(4)" ).text();
+                String my_rank = elem.select("li .info_movie .thumb_movie em").text();
+                String my_opdate = elem.select("li .info_state").text();
+                //String my_salesAmt = elem.select( "li .movie_info .movie_item dd:nth-child(4)" ).text();
                 //Log.d("test", "test" + mTitle);
                 //ArrayList에 계속 추가한다.
-                list.add(new ItemObject(my_title, my_imgUrl, my_opdate, my_rank, my_salesAmt));
+                list.add(new ItemObject(my_title, my_imgUrl, my_opdate, my_rank, my_link));
 
             }
             ItemObject[] post = list.toArray(new ItemObject[list.size()]);

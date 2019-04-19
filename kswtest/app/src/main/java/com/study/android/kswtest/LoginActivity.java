@@ -1,7 +1,9 @@
 package com.study.android.kswtest;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
@@ -11,6 +13,7 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +37,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     FirebaseAuth firebaseAuth;
     private BackPressCloseHandler backPressCloseHandler;
 
+    CheckBox checkBox;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         firebaseAuth = FirebaseAuth.getInstance();
 
         //initializing views
+
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextPassword);
         textviewSingin= findViewById(R.id.textViewSignin);
@@ -59,6 +66,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled( true );
+
+        SharedPreferences pref = getSharedPreferences("login", Activity.MODE_PRIVATE);
+        editor = pref.edit();
+
+        String id = pref.getString("id", "");
+        editTextEmail.setText(id);
+
+        checkBox = findViewById(R.id.checkBox);
+        if(editTextEmail.getText().toString().equals("")) {
+            checkBox.setChecked(false);
+        } else {
+            checkBox.setChecked(true);
+        }
+
+        checkBox.setOnClickListener(new CheckBox.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                if (((CheckBox)v).isChecked()) {
+                    // TODO : CheckBox is checked.
+                    String sId = editTextEmail.getText().toString();
+                    String sPwd = editTextPassword.getText().toString();
+
+                    editor.putString("id",sId);
+                    editor.commit();
+                } else {
+                    // TODO : CheckBox is unchecked.
+                    editor.clear();
+                    editor.commit();
+                }
+            }
+        });
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -111,8 +149,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onBackPressed() {
         backPressCloseHandler.onBackPressed();
     }
-
-
 
     @Override
     public void onClick(View view) {

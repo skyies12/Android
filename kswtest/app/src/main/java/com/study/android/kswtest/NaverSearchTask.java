@@ -51,11 +51,10 @@ public class NaverSearchTask extends AsyncTask<String, Void, SearchItem[]> {
         final String clientSecret = "kVSgd8btuw";//애플리케이션 클라이언트 시크릿값";
         final int yearfrom = 2000;
         final int yearto = 2019;
-        final int dis = 20;
 
         try {
             String text = URLEncoder.encode(params[0], "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/movie?query=" + text + "&yearfrom=" + yearfrom + "&yearto=" + yearto + "&display=20"; // json 결과
+            String apiURL = "https://openapi.naver.com/v1/search/movie?query=" + text + "&yearfrom=" + yearfrom + "&yearto=" + yearto + "&display=30"; // json 결과
             // Json 형태로 결과값을 받아옴.
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         web.getSettings().setJavaScriptEnabled(true);
         web.getSettings().setDefaultTextEncodingName("UTF-8");
 
-        web.loadUrl("https://www.google.com");
+        web.loadUrl("https://movie.daum.net/moviedb/video?id=120146");
         web.setWebViewClient(new myWebView());
         web.setWebChromeClient(new myWebChromeClient());
         web.setHorizontalScrollBarEnabled(false);

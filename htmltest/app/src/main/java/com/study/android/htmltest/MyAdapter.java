@@ -48,11 +48,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
         holder.textView_title.setText(String.valueOf(mList.get(position).getTitle()));
-        holder.textView_opendt.setText("개봉 " + String.valueOf(mList.get(position).getOpenDt()));
-        holder.textView_rank.setText(String.valueOf(mList.get(position).getRank()));
-        holder.textView_salesAmt.setText("누적 " + String.valueOf(mList.get(position).getSalesAmt()));
-
-        Picasso.with(holder.itemView.getContext()).load(mList.get(position).getImg_url()).into(holder.imageView_img);
+//        holder.textView_opendt.setText("개봉 " + String.valueOf(mList.get(position).getOpenDt()));
+//        holder.textView_rank.setText(String.valueOf(mList.get(position).getRank()));
+//        holder.textView_salesAmt.setText("누적 " + String.valueOf(mList.get(position).getSalesAmt()));
+//
+//        Picasso.with(holder.itemView.getContext()).load(mList.get(position).getImg_url()).into(holder.imageView_img);
     }
 
     @Override

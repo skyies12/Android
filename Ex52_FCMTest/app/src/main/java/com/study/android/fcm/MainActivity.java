@@ -3,6 +3,7 @@ package com.study.android.fcm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         regId = FirebaseInstanceId.getInstance().getToken();
         println("regId : " + regId);
+        Log.d("lecture","regId : " + regId);
 
     }
 

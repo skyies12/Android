@@ -29,10 +29,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Map<String, String> data = remoteMessage.getData();
             Log.d(TAG, "Message data payload: " + data.toString());
             String title = data.get("title");
-            String contents = data.get("contents");
+            String contents = data.get("message");
 
-            //sendToActivity(getApplicationContext(), contents,title);
-            // sendNotification(contents);
+            // sendToActivity(getApplicationContext(), contents,title);
+            sendNotification(title, contents);
         }
 
         // Check if message contains a notification payload.
@@ -42,8 +42,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Log.d(TAG, "Message Notification Title: " + notiTitle);
             Log.d(TAG, "Message Notification Body: " + notiBody);
 
-            sendToActivity(getApplicationContext(), notiBody, notiTitle);
-            sendNotification(notiBody);
+//            sendToActivity(getApplicationContext(), notiBody, notiTitle);
+//            sendNotification(notiBody);
         }
     }
 
@@ -57,7 +57,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         context.startActivity(intent);
     }
 
-    private void sendNotification(String messageBody) {
+    private void sendNotification(String title, String messageBody) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(
@@ -67,7 +67,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("FCM Message")
+                .setContentTitle(title)
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
