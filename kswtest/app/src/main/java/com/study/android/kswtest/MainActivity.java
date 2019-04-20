@@ -27,6 +27,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -45,7 +48,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.squareup.picasso.Picasso;
 
-import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener{
     private static final String TAG = "lecture";
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button mBtnGoogleSignOut;
     private TextView mTxtProfileInfo;
     private ImageView mImgProfile;
+
+    AdView mAdView;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +149,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          //logout button event
          btnLogout.setOnClickListener(this);
          textivewDelete.setOnClickListener(this);
+
+         String bannerid = getResources().getString(R.string.ad_unit_id_1);
+         MobileAds.initialize(getApplicationContext(), bannerid);
+         // 테스트 광고 부르기
+         mAdView = (AdView) findViewById(R.id.adView);
+         AdRequest adRequest = new AdRequest.Builder().
+                 addTestDevice("B8552282147B0482A9E9A0963BB3D685").build();
+         mAdView.loadAd(adRequest);
 
          initViews();
          initFirebaseAuth();

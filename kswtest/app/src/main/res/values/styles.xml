@@ -19,5 +19,8 @@
     <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
         <item name="colorControlActivated">#D6AF13</item>
     </style>
+    <style name="RatingStyle" parent="Base.Widget.AppCompat.RatingBar">
+        <item name="colorControlActivated">#D6AF13</item>
+    </style>
 
 </resources>

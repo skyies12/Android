@@ -18,11 +18,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "lecture";
 
     private EditText user_chat, user_edit;
     private ListView chat_list;
+    private ArrayList<ChatDTO> mList;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         chat_list.setAdapter(adapter);
 
         // 데이터 받아오기 및 어댑터 데이터 추가 및 삭제 등.. 리스너 관리
-        databaseReference.child("chat").addChildEventListener(new ChildEventListener() {
+        databaseReference.child("review").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Log.e("LOG", "dataSnapshot.getKey() : " + dataSnapshot.getKey());

@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ReviewActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
             android:name=".FindActivity"
             android:theme="@style/Theme.AppCompat.Light">
             <meta-data

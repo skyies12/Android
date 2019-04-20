@@ -70,16 +70,14 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
 
-                        String sMax = "0";
+                        String sMax = "어벤져스";
                         StringBuilder sb = new StringBuilder();
                         sb.append("");
                         for(QueryDocumentSnapshot doc : value) {
-                            if(doc.get("name") != null) {
-                                sMax = doc.getId();
+                            if(sMax == "어벤져스") {
                                 sb.append(sMax + " / " + doc.getString("name") + " / " + doc.getString("age") + "\n");
                             }
                         }
-                        nMax = Integer.parseInt(sMax);
 
                         tvContents.setText(sb.toString());
                     }
@@ -93,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         quote.put("age", etAge.getText().toString());
 
         // Add a new document with a generated ID
-        String newCount = String.format("%04d", nMax + 1);
+        String newCount = "어벤져스";
 
         db.collection("MyFirestoreDB")
                 .document(newCount)

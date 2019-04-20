@@ -1,9 +1,11 @@
 package com.study.android.kswtest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -78,10 +82,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
 
         // 리스트 클릭
         holder.itemView.setOnClickListener(new View.OnClickListener() {
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
+            FirebaseUser user = mAuth.getCurrentUser();
             @Override
             public void onClick(View v) {
+                String userEmail = user.getEmail();
+                Log.d("lecture", "user : " + userEmail );
                 Context context = v.getContext();
-                Toast.makeText(context, String.valueOf(mList.get(position).getTitle()), Toast.LENGTH_LONG).show();
+                // Toast.makeText(context, String.valueOf(mList.get(position).getTitle()), Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context,ReviewActivity.class);
+                intent.putExtra("chatName", String.valueOf(mList.get(position).getTitle()));
+                intent.putExtra("userName", userEmail);
+                context.startActivity(intent);
             }
         });
     }

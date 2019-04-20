@@ -159,7 +159,7 @@ public class MovieinfoActivity extends AppCompatActivity {
                 web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v8472YW7M7iWn8MYM88V1VM@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
             } else if(item.getKrtitle().equals( "헬보이 (2019)" )) {
                 web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v19dciUgpiUgUN4pOIw4YtO@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
-            } else if(item.getKrtitle().equals( "돈 (2019)" )) {
+            } else if(item.getKrtitle().equals( "돈 (2018)" )) {
                 web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v164cOoNNOhoF3qOASNmKPN@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
             } else if(item.getKrtitle().equals( "미성년 (2018)" )) {
                 web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/vbe5eUUU7v6rU3iUrUvUNAG@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
@@ -169,7 +169,7 @@ public class MovieinfoActivity extends AppCompatActivity {
                 web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v488eJVJMRGM2G3TR3qVVzr@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
             } else if(item.getKrtitle().equals( "공포의 묘지 (2019)" )) {
                 web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v488eJVJMRGM2G3TR3qVVzr@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
-            } else if(item.getKrtitle().equals( "장난스런 키스 (2019)" )) {
+            } else if(item.getKrtitle().equals( "장난스런 키스 (2018)" )) {
                 web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v47e0iJNinn3t7tnmN34npI@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
             } else if(item.getKrtitle().equals( "바이스 (2018)" )) {
                 web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v439c66v0vtGV0oXw9XvQZ6@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
