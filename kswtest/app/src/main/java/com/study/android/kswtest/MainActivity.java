@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView textivewDelete;
     private Button btnLogin;
     private Button btnSignUp;
+    private Button googlemapbtn;
     private BackPressCloseHandler backPressCloseHandler;
 
     private FirebaseAuth mAuth;
@@ -112,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          textivewDelete = findViewById(R.id.textviewDelete);
          btnLogin = findViewById(R.id.btnLogin);
          btnSignUp = findViewById(R.id.btnSignUp);
+         googlemapbtn = findViewById(R.id.googlemapbtn);
 
          //initializing firebase authentication object
          firebaseAuth = FirebaseAuth.getInstance();
@@ -160,8 +162,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
          initViews();
          initFirebaseAuth();
+
+
     }
 
+    public void MapbtnClicked(View v) {
+         Intent intent = new Intent( getApplicationContext(),  GoogleMapActivity.class);
+         startActivity( intent );
+    }
+
+    public void hideAd(View v) {
+        if(mAdView.isEnabled()) {
+            mAdView.setEnabled(false);
+        }
+        if(mAdView.getVisibility() != View.INVISIBLE) {
+            mAdView.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public void showAd(View v) {
+        if(mAdView.isEnabled()) {
+            mAdView.setEnabled(true);
+        }
+        if(mAdView.getVisibility() != View.VISIBLE) {
+            mAdView.setVisibility(View.VISIBLE);
+        }
+    }
     private void initViews() {
         mBtnGoogleSignIn = findViewById( R.id.btn_google_signin);
         mBtnGoogleSignIn.setOnClickListener( new View.OnClickListener() {

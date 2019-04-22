@@ -84,8 +84,8 @@ public class NaverSearchTask extends AsyncTask<String, Void, SearchItem[]> {
             JSONObject jobj = new JSONObject(data);
             String display_string = jobj.getString("display");
             int display = Integer.parseInt(display_string);
-            Log.d(TAG, data);
-             Log.d(TAG, Integer.toString( display ));
+            //Log.d(TAG, data);
+            // Log.d(TAG, Integer.toString( display ));
             String[] array;
             array = data.split("\"");
 

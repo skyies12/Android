@@ -175,6 +175,16 @@ public class MovieinfoActivity extends AppCompatActivity {
                 web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v439c66v0vtGV0oXw9XvQZ6@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
             } else if(item.getKrtitle().equals( "파이브 피트 (2019)" )) {
                 web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v9c965N9WF4e18kaJY8NYWe@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
+            } else if(item.getKrtitle().equals( "요로나의 저주 (2019)" )) {
+                web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v34ab222D0uGaDiGQ2aDRwA@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
+            } else if(item.getKrtitle().equals( "크게 될 놈 (2018)" )) {
+                web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v9e73lt9zWUO5UzOlvaaPss@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
+            } else if(item.getKrtitle().equals( "캡틴 마블 (2019)" )) {
+                web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v695avofK3YfoXLv3fyQTto@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
+            } else if(item.getKrtitle().equals( "왓칭 (2019)" )) {
+                web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/va149FFFcmgV66jVFVogSgm@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
+            } else if(item.getKrtitle().equals( "아이 엠 마더 (2018)" )) {
+                web.loadUrl( "https://kakaotv.daum.net/embed/player/cliplink/v1c56DK11XyXCdyWLLL1yCy@my?service=daum_movie&autoplay=true&profile=HIGH&playsinline=true" );
             }
         }
     }

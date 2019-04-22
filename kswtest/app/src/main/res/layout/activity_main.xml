@@ -26,18 +26,26 @@
 
             <TextView
                 android:id="@+id/toolbar_title"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:paddingStart="-55dp"
-                android:paddingLeft="-55dp"
                 android:text="Movie Culture"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
+
+            <Button
+                android:id="@+id/googlemapbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="MapbtnClicked"
+                android:text="주변 검색"
+                android:textSize="12sp" />
         </android.support.v7.widget.Toolbar>
+
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -69,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"

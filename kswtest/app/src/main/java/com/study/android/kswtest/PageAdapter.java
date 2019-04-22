@@ -20,10 +20,6 @@ public class PageAdapter extends FragmentStatePagerAdapter {
                 return new MovieFragment();
             case 1:
                 return new SearchFragment();
-//            case 2:
-//                return new Fragment3();
-//            case 3:
-//                return new Fragment4();
             default:
                 return null;
         }

@@ -87,11 +87,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 String userEmail = user.getEmail();
-                Log.d("lecture", "user : " + userEmail );
+                //Log.d("lecture", "user : " + userEmail );
                 Context context = v.getContext();
                 // Toast.makeText(context, String.valueOf(mList.get(position).getTitle()), Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context,ReviewActivity.class);
-                intent.putExtra("chatName", String.valueOf(mList.get(position).getTitle()));
+                intent.putExtra("chatName", String.valueOf(mList.get(position).getTitle()).replace("<b>","").replace( "</b>","" ));
                 intent.putExtra("userName", userEmail);
                 context.startActivity(intent);
             }

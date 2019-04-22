@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
 
 public class SearchFragment extends Fragment {
@@ -25,7 +27,6 @@ public class SearchFragment extends Fragment {
     private ArrayList<SearchItem> movieList;
     private RecyclerView.LayoutManager mLayoutManager;
     private EditText editText;
-    private Button button;
 
     @Nullable
     @Override
@@ -38,8 +39,19 @@ public class SearchFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         editText = view.findViewById(R.id.etSearch);
 
-        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        editText.setOnFocusChangeListener( new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus) {
+                    ((MainActivity)getActivity()).hideAd( v );
+                } else {
+                    ((MainActivity)getActivity()).showAd( v );
+                }
+            }
+        } );
 
+
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 
@@ -61,7 +73,7 @@ public class SearchFragment extends Fragment {
                         } ).execute( str );
                     }
                     movieList.clear();
-
+                    editText.clearFocus();
                     downKeyboard(getContext(), editText);
                     return true;
                 }
@@ -74,8 +86,10 @@ public class SearchFragment extends Fragment {
 
         return view;
     }
+
     public static void downKeyboard(Context context, EditText editText) {
         InputMethodManager mInputMethodManager = (InputMethodManager)context.getSystemService(Context.INPUT_METHOD_SERVICE);
         mInputMethodManager.hideSoftInputFromWindow(editText.getWindowToken(), 0);
     }
+
 }

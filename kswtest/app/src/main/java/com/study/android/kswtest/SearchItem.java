@@ -6,6 +6,7 @@ public class SearchItem {
     private String director;
     private String actor;
     private String userRating;
+
     public SearchItem() {
 
     }
