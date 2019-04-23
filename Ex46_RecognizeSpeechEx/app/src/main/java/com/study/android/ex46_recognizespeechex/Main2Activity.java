@@ -9,21 +9,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static android.app.Activity.RESULT_OK;
+
 public class Main2Activity extends AppCompatActivity {
     private static final String TAG = "lecture";
+    public static String PACKAGE_NAME;
 
     private static final int REQUEST_CODE = 1000;
     TextView textView1;
+    EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        PACKAGE_NAME = getApplicationContext().getPackageName();
 
         textView1 = findViewById(R.id.textView);
+        editText = findViewById( R.id.editText );
     }
 
     public void onBtn1Clicked(View v) {
@@ -31,7 +38,7 @@ public class Main2Activity extends AppCompatActivity {
             // 음성인식의 실행
             // 음성 인식의 실행 (1)
             Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
+            intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, MainActivity.PACKAGE_NAME);
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR");
 
             // 검색 결과를 보여주는 갯수
@@ -138,7 +145,7 @@ public class Main2Activity extends AppCompatActivity {
                     String[] rs = new String[text.size()];
                     text.toArray(rs);
 
-                    textView1.setText(rs[0]);
+                    editText.setText(rs[0]);
                 }
                 break;
         }

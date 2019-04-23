@@ -6,9 +6,11 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     ArrayList<SearchItem> mList;
     private LayoutInflater mInflate;
     private Context mContext;
+    private FirebaseAuth firebaseAuth;
 
     //constructor
     public SearchAdapter(Context context, ArrayList<SearchItem> myData) {
@@ -43,6 +46,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public  class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageView_img;
         private TextView textView_title, textView_director, textView_actor, textView_userRating;
+        private Button button;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -52,6 +56,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             textView_director = itemView.findViewById(R.id.textView_director);
             textView_actor = itemView.findViewById(R.id.textView_actor);
             textView_userRating = itemView.findViewById(R.id.textView_userRating);
+            button = itemView.findViewById( R.id.reviewbtn );
         }
     }
 
@@ -66,8 +71,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(@NonNull SearchAdapter.ViewHolder holder, final int position) {
         holder.textView_title.setText(String.valueOf(mList.get(position).getTitle()).replace("<b>","").replace( "</b>","" ));
         holder.textView_director.setText("감독 : " + String.valueOf(mList.get(position).getDirector()));
-        if(String.valueOf(mList.get(position).getActor()).length() > 20) {
-            holder.textView_actor.setText("출연 배우 : " + String.valueOf(mList.get(position).getActor()).substring( 0, 17 ).replace( "|",", " ));
+        if(String.valueOf(mList.get(position).getActor()).length() > 15) {
+            holder.textView_actor.setText("출연 배우 : " + String.valueOf(mList.get(position).getActor()).substring( 0, 14 ).replace( "|",", " ));
         } else {
             holder.textView_actor.setText("출연 배우 : " + String.valueOf(mList.get(position).getActor()));
         }
@@ -79,21 +84,26 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             Picasso.with(holder.itemView.getContext()).load(mList.get(position).getImage()).into(holder.imageView_img);
         }
 
-
-        // 리스트 클릭
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.button.setOnClickListener(new View.OnClickListener() {
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
             FirebaseUser user = mAuth.getCurrentUser();
             @Override
             public void onClick(View v) {
-                String userEmail = user.getEmail();
-                //Log.d("lecture", "user : " + userEmail );
                 Context context = v.getContext();
-                // Toast.makeText(context, String.valueOf(mList.get(position).getTitle()), Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context,ReviewActivity.class);
-                intent.putExtra("chatName", String.valueOf(mList.get(position).getTitle()).replace("<b>","").replace( "</b>","" ));
-                intent.putExtra("userName", userEmail);
-                context.startActivity(intent);
+                firebaseAuth = FirebaseAuth.getInstance();
+                //유저가 로그인 하지 않은 상태라면 null 상태이고 이 액티비티를 종료하고 로그인 액티비티를 연다.
+                if(firebaseAuth.getCurrentUser() == null) {
+                    Toast.makeText(context, "로그인 후 이용가능합니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    String userEmail = user.getEmail();
+                    //Log.d("lecture", "user : " + userEmail );
+
+                    // Toast.makeText(context, String.valueOf(mList.get(position).getTitle()), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(context,ReviewActivity.class);
+                    intent.putExtra("chatName", String.valueOf(mList.get(position).getTitle()).replace("<b>","").replace( "</b>","" ));
+                    intent.putExtra("userName", userEmail);
+                    context.startActivity(intent);
+                }
             }
         });
     }

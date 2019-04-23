@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button mBtnGoogleSignOut;
     private TextView mTxtProfileInfo;
     private ImageView mImgProfile;
+    private Button btTicket;
 
     AdView mAdView;
 
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          btnLogin = findViewById(R.id.btnLogin);
          btnSignUp = findViewById(R.id.btnSignUp);
          googlemapbtn = findViewById(R.id.googlemapbtn);
+         btTicket = findViewById( R.id.ticket );
 
          //initializing firebase authentication object
          firebaseAuth = FirebaseAuth.getInstance();
@@ -157,13 +159,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          // 테스트 광고 부르기
          mAdView = (AdView) findViewById(R.id.adView);
          AdRequest adRequest = new AdRequest.Builder().
-                 addTestDevice("B8552282147B0482A9E9A0963BB3D685").build();
+                 addTestDevice("06DEB6A2A1BC5679F0839019884A0480").build();
          mAdView.loadAd(adRequest);
 
          initViews();
          initFirebaseAuth();
 
 
+    }
+
+    public void Ticketbtn(View v) {
+        Intent intent = getPackageManager().getLaunchIntentForPackage("com.cgv.android.movieapp");
+        if(intent == null) {
+            Intent i = new Intent(android.content.Intent.ACTION_VIEW);
+            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.cgv.android.movieapp"));
+            startActivity(i);
+        } else {
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
     }
 
     public void MapbtnClicked(View v) {
@@ -251,7 +265,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mBtnGoogleSignOut.setVisibility(View.GONE);
             btnLogin.setVisibility(View.VISIBLE);
             btnSignUp.setVisibility(View.VISIBLE);
-            mImgProfile.setImageResource( R.mipmap.ic_launcher_round);
+            mImgProfile.setImageResource( R.mipmap.ic_launcher);
+            btTicket.setVisibility( View.GONE );
         } else {
             // 로그인 상태
             textViewUserEmail.setText("반갑습니다.\n"+ user.getEmail());
@@ -261,6 +276,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mImgProfile.setVisibility(View.VISIBLE);
             btnLogin.setVisibility(View.GONE);
             btnSignUp.setVisibility(View.GONE);
+            btTicket.setVisibility( View.VISIBLE );
 
             String userName = user.getDisplayName(); // 채팅에 사용 될 닉네임 설정
             String userEmail = user.getEmail();

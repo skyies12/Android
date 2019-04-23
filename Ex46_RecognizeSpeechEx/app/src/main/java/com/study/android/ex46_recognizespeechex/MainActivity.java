@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "lecture";
 
-    TextView textView1;
+    EditText textView1;
     SpeechRecognizer mRecognizer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

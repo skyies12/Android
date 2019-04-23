@@ -722,7 +722,7 @@ public class MainActivity extends AppCompatActivity
 
         new NRPlaces.Builder()
                 .listener(MainActivity.this)
-                .key("AIzaSyCLUEm1tme_bn5vzwBubvqDsU_2VBAlGdM")
+                .key("AIzaSyD6dieONziK-nvjbmtp5Tfcp-diHvawXnQ")
                 .latlng(location.latitude, location.longitude)//현재 위치
                 .radius(1000) //500 미터 내에서 검색
                 .type( PlaceType.MOVIE_THEATER) //음식점
