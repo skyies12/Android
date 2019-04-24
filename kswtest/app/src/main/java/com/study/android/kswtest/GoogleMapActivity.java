@@ -35,6 +35,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -83,6 +84,8 @@ public class GoogleMapActivity extends AppCompatActivity
     PlaceAdapter adapter;
     PlaceItem placeItem;
 
+    ListView listView1;
+
     LocationRequest locationRequest = new LocationRequest()
             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
             .setInterval(UPDATE_INTERVAL_MS)
@@ -114,6 +117,7 @@ public class GoogleMapActivity extends AppCompatActivity
 
         previous_marker = new ArrayList<>();
         placeList = new ArrayList<>();
+        listView1 = findViewById(R.id.listView);
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +127,7 @@ public class GoogleMapActivity extends AppCompatActivity
                 adapter.notifyDataSetChanged();
             }
         });
+
 //
 //        try {
 //            showPlaceInformation(currentPosition);
@@ -139,6 +144,7 @@ public class GoogleMapActivity extends AppCompatActivity
         switch (item.getItemId()) {
             case android.R.id.home :
                 NavUtils.navigateUpFromSameTask(this);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -157,7 +163,7 @@ public class GoogleMapActivity extends AppCompatActivity
         //앱 정보에서 퍼미션을 허가했는지를 다시 검사해봐야 한다.
         if (askPermissionOnceAgain) {
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 askPermissionOnceAgain = false;
 
                 checkPermissions();
@@ -202,7 +208,7 @@ public class GoogleMapActivity extends AppCompatActivity
 
         //mGoogleMap.getUiSettings().setZoomControlsEnabled(false);
         mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(14));
         mGoogleMap.setOnMyLocationButtonClickListener(new GoogleMap.OnMyLocationButtonClickListener(){
 
             @Override
@@ -229,6 +235,8 @@ public class GoogleMapActivity extends AppCompatActivity
                 if (mMoveMapByUser == true && mRequestingLocationUpdates){
                     Log.d(TAG, "onCameraMove : 위치에 따른 카메라 이동 비활성화");
                     mMoveMapByAPI = false;
+                    showPlaceInformation(currentPosition);
+                    adapter.notifyDataSetChanged();
                 }
                 mMoveMapByUser = true;
             }
@@ -281,7 +289,7 @@ public class GoogleMapActivity extends AppCompatActivity
     @Override
     public void onConnected(Bundle connectionHint) {
         if ( mRequestingLocationUpdates == false ) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
                 int hasFineLocationPermission = ContextCompat.checkSelfPermission(this,
                         Manifest.permission.ACCESS_FINE_LOCATION);
                 if (hasFineLocationPermission == PackageManager.PERMISSION_DENIED) {
@@ -377,6 +385,8 @@ public class GoogleMapActivity extends AppCompatActivity
             // CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(currentLatLng, 15);
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
             mGoogleMap.moveCamera(cameraUpdate);
+            showPlaceInformation(currentPosition);
+            adapter.notifyDataSetChanged();
         }
     }
 
@@ -402,7 +412,7 @@ public class GoogleMapActivity extends AppCompatActivity
     }
 
     //여기부터는 런타임 퍼미션 처리을 위한 메소드들
-    @TargetApi(Build.VERSION_CODES.M)
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private void checkPermissions() {
         boolean fineLocationRationale = ActivityCompat
                 .shouldShowRequestPermissionRationale(this,
@@ -444,7 +454,7 @@ public class GoogleMapActivity extends AppCompatActivity
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private void showDialogForPermission(String msg) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(GoogleMapActivity.this);
@@ -572,12 +582,12 @@ public class GoogleMapActivity extends AppCompatActivity
                 }
                 Log.d( TAG, Integer.toString(placeList.size()));
 
-                final ListView listView1 = findViewById(R.id.listView);
                 for (int i = 0; i < placeList.size(); i++) {
                     placeItem = new PlaceItem(placeList.get(i).getPlaceTitle(), placeList.get(i).getPlaceDistance());
                     adapter.addItem(placeItem);
                     listView1.setAdapter(adapter);
                 }
+
                 //중복 마커 제거
                 HashSet<Marker> hashSet = new HashSet<Marker>();
                 hashSet.addAll(previous_marker);
@@ -603,11 +613,10 @@ public class GoogleMapActivity extends AppCompatActivity
                 .listener(GoogleMapActivity.this)
                 .key("AIzaSyCLUEm1tme_bn5vzwBubvqDsU_2VBAlGdM")
                 .latlng(location.latitude, location.longitude)//현재 위치
-                .radius(1000) //500 미터 내에서 검색
+                .radius(1000) //1000 미터 내에서 검색
                 .type( PlaceType.MOVIE_THEATER) //영화
                 .build()
                 .execute();
-
         adapter.clear();
         placeList.clear();
     }

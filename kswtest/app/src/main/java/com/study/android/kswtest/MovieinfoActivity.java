@@ -3,6 +3,10 @@ package com.study.android.kswtest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
@@ -24,6 +28,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;

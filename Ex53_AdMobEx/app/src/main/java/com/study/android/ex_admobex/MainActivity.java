@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         // 테스트 광고 부르기
         mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().
-                addTestDevice("06DEB6A2A1BC5679F0839019884A0480").build();
+                addTestDevice("DAFDC12B6484CAC52C6240B1CFA62D7D").build();
         mAdView.loadAd(adRequest);
     }
 

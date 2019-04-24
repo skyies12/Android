@@ -159,21 +159,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          // 테스트 광고 부르기
          mAdView = (AdView) findViewById(R.id.adView);
          AdRequest adRequest = new AdRequest.Builder().
-                 addTestDevice("06DEB6A2A1BC5679F0839019884A0480").build();
+                 addTestDevice("DAFDC12B6484CAC52C6240B1CFA62D7D").build();
          mAdView.loadAd(adRequest);
 
          initViews();
          initFirebaseAuth();
-
-
     }
 
     public void Ticketbtn(View v) {
         Intent intent = getPackageManager().getLaunchIntentForPackage("com.cgv.android.movieapp");
         if(intent == null) {
-            Intent i = new Intent(android.content.Intent.ACTION_VIEW);
-            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.cgv.android.movieapp"));
-            startActivity(i);
+            android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(MainActivity.this);
+
+            builder.setMessage("CGV 앱을 다운 받으시겠습니까?")
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("알림")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = new Intent(android.content.Intent.ACTION_VIEW);
+                            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.cgv.android.movieapp"));
+                            startActivity(i);
+                            dialog.cancel();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            android.support.v7.app.AlertDialog alert =builder.create();
+            alert.show();
         } else {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);

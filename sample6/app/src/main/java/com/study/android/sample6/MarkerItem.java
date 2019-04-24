@@ -8,11 +8,12 @@ public class MarkerItem {
     double lat;
     double longi;
     int addr;
+    String name;
 
-    public MarkerItem(double lat, double longi, int addr) {
+    public MarkerItem(double lat, double longi, String name) {
         this.lat = lat;
         this.longi = longi;
-        this.addr = addr;
+        this.name = name;
     }
 
     public MarkerItem(double lat, double longi) {
@@ -47,5 +48,13 @@ public class MarkerItem {
 
     public void setAddr(int addr) {
         this.addr = addr;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

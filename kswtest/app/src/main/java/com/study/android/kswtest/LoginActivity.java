@@ -84,14 +84,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View v) {
                 if (((CheckBox)v).isChecked()) {
-                    // TODO : CheckBox is checked.
                     String sId = editTextEmail.getText().toString();
                     String sPwd = editTextPassword.getText().toString();
 
                     editor.putString("id",sId);
                     editor.commit();
                 } else {
-                    // TODO : CheckBox is unchecked.
                     editor.clear();
                     editor.commit();
                 }

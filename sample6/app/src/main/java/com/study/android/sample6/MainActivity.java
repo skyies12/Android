@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     String data;
     TextView log;
-    ArrayList<MarkerItem> sampleList;
-    ArrayList<MarkerItem2> sampleList2;
+    ArrayList<MarkerItem> List; // 비교 리스트
+    ArrayList<MarkerItem> sampleList; // 위도 리스트
+    ArrayList<MarkerItem2> sampleList2; // 경도 리스트
+    ArrayList<MarkerItem3> sampleList3; // 이름 리스트
     MarkerItem markerItem;
-    MarkerItem2 markerItem2;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync( this );
         sampleList = new ArrayList();
         sampleList2 = new ArrayList();
+        sampleList3 = new ArrayList();
     }//mOnClick method..
 
     @Override
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(33.257836, 126.353287), 14));
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
-        mMap.animateCamera(CameraUpdateFactory.zoomTo( 10 ));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
         setCustomMarkerView();
         getSampleMarkerItems();
@@ -92,12 +93,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         tv_marker = (TextView) marker_root_view.findViewById(R.id.tv_marker);
     }
 
-
     private void getSampleMarkerItems() {
         //Log.d("lecture","데이터 위도 : " + sampleList.get( 2 ).getLat());
 //      markerItem.getLat();
-
-        sampleList.add(new MarkerItem(33.257836, 126.353287, 100000));
+        List = new ArrayList<>( );
+        List.add(new MarkerItem(33.257836, 126.353287, "test"));
         new Thread( new Runnable() {
 
             public void run() {
@@ -132,20 +132,24 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     xpp.next();
                                 } else if (tag.equals( "cpId" )) {
                                     xpp.next();
-                                    cpId = xpp.getText();
+                                    //cpId = xpp.getText();
                                 } else if (tag.equals( "cpNm" )) {
                                     xpp.next();
+                                    cpId = xpp.getText();
+                                    MarkerItem3 markerItem3 = new MarkerItem3(cpId);
+                                    sampleList3.add(markerItem3);
+                                    //Log.d("lecture","데이터 이름 : " + cpId);
                                 } else if (tag.equals( "lat" )) {
                                     xpp.next();
                                     lat = xpp.getText();  //좌표찍기
-                                    Log.d( "lecture", "데이터 위도 : " + lat );
-                                    MarkerItem markerItem = new MarkerItem( Double.parseDouble( lat ) );
+                                    //Log.d( "lecture", "데이터 위도 : " + lat );
+                                    MarkerItem markerItem = new MarkerItem(Double.parseDouble(lat));
                                     sampleList.add( markerItem );
                                 } else if (tag.equals( "longi" )) {
-                                    Log.d("lecture","데이터 경도 : " + longi);
+                                    //Log.d("lecture","데이터 경도 : " + longi);
                                     xpp.next();
                                     longi = xpp.getText(); //좌표찍기
-                                    MarkerItem2 markerItem2 = new MarkerItem2( Double.parseDouble( longi ) );
+                                    MarkerItem2 markerItem2 = new MarkerItem2( Double.parseDouble(longi));
                                     sampleList2.add( markerItem2 );
                                 }
                                 break;
@@ -159,44 +163,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         }
                         eventType = xpp.next();
                     }
-                    Log.d("lecture", "데이터 개수 : " + Integer.toString(sampleList2.size()));
-                    Log.d("lecture", "데이터 개수 : " + Integer.toString(sampleList.size()));
-
-
-                    for (int i = 0; i < sampleList.size(); i++) {
-                        markerItem = new MarkerItem( sampleList.get( i ).getLat(), sampleList2.get( i ).getLongi(), 100000 );
-                        sampleList.add( new MarkerItem( sampleList.get(i).getLat(), sampleList2.get(i).getLongi()) );
-                        Log.d( "lecture", "위도 : " + sampleList.get(i).getLat() );
-                        Log.d( "lecture", "경도 : " + sampleList2.get(i).getLongi() );
-                    }
                 } catch (Exception e) {
                     // TODO Auto-generated catch blocke.printStackTrace();
                 }//아래 메소드를 호출하여 XML data를 파싱해서 String 객체로 얻어오기
                 runOnUiThread( new Runnable() {
                     @Override
                     public void run() {
-                        // TODO Auto-generated method stub
-                        // text.setText( data ); //TextView에 문자열  data 출력
+                        Log.d("lecture", "데이터 개수 : " + Integer.toString(sampleList.size()));
+
+                        for (int i = 0; i < sampleList.size(); i++) {
+                            markerItem = new MarkerItem( sampleList.get( i ).getLat(), sampleList2.get( i ).getLongi(), sampleList3.get(i).getCpName() );
+                            List.add( new MarkerItem( sampleList.get(i).getLat(), sampleList2.get(i).getLongi(), sampleList3.get(i).getCpName()));
+                        }
+                        for(MarkerItem markerItem : List) {
+                            addMarker(markerItem, false);
+                        }
                     }
                 } );
             }
         } ).start();
-//        sampleList.add(new MarkerItem(37.538523, 126.95768, 5000));
-
-        for(MarkerItem markerItem : sampleList) {
-            addMarker(markerItem, false);
-        }
-    }
-
-    //XmlPullParser를 이용하여 Naver 에서 제공하는 OpenAPI XML 파일 파싱하기(parsing)
-    String getXmlData() {
-
-        StringBuffer buffer = new StringBuffer();
-
-        String query = "%EC%A0%84%EB%A0%A5%EB%A1%9C";
-
-
-        return buffer.toString();//StringBuffer 문자열 객체 반환3
     }
 
     private Marker addMarker(MarkerItem markerItem, boolean isSelectedMarker) {
@@ -204,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         int addr = markerItem.getAddr();
         String formatted = NumberFormat.getCurrencyInstance().format((addr));
 
-        tv_marker.setText(formatted);
+        tv_marker.setText(markerItem.getName());
 
         if (isSelectedMarker) {
             tv_marker.setBackgroundResource(R.drawable.marker);
@@ -215,21 +200,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.title(Integer.toString(addr));
+        markerOptions.title(markerItem.getName());
         markerOptions.position(position);
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker_root_view)));
 
-
         return mMap.addMarker(markerOptions);
-
     }
-
-
-
 
     // View를 Bitmap으로 변환
     private Bitmap createDrawableFromView(Context context, View view) {
-
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -244,16 +223,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return bitmap;
     }
 
-
     private Marker addMarker(Marker marker, boolean isSelectedMarker) {
         double lat = marker.getPosition().latitude;
         double longi = marker.getPosition().longitude;
         int addr = Integer.parseInt(marker.getTitle());
-        MarkerItem temp = new MarkerItem(lat, longi, addr);
+        MarkerItem temp = new MarkerItem(lat, longi, marker.getTitle());
         return addMarker(temp, isSelectedMarker);
     }
-
-
 
     @Override
     public boolean onMarkerClick(Marker marker) {
@@ -266,15 +242,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
-
-
     private void changeSelectedMarker(Marker marker) {
         // 선택했던 마커 되돌리기
         if (selectedMarker != null) {
             addMarker(selectedMarker, false);
             selectedMarker.remove();
         }
-
         // 선택한 마커 표시
         if (marker != null) {
             selectedMarker = addMarker(marker, true);

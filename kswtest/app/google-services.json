@@ -214,11 +214,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "455942437148-uku7ivo60fqqkonded4vavnfokeuchbd.apps.googleusercontent.com",
+          "client_id": "455942437148-f5056tgdc296etnkhok8kckqa7cro63k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.study.android.kswtest",
-            "certificate_hash": "6584e33146af5c2339075a3ec098ed0d418dc08d"
+            "certificate_hash": "0c4ec9705281546ff6b134b1d354f08332d1bea4"
           }
         },
         {

@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 map = googleMap;
             }
         });
+
         // 권한 체크 후 사용자에 의해 취소되었다면 다시 요청
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        requestMyLocation();
     }
 
     public void onBtnClicked(View v) {
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         LocationManager manager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 
         try {
-            long minTime = 10000;
+            long minTime = 0;
             float minDistance = 0;
             manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, new LocationListener() {
                 @Override

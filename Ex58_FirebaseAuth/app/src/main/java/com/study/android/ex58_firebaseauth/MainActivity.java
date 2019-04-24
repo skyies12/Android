@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
-
     private void updateProfile() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user == null) {
