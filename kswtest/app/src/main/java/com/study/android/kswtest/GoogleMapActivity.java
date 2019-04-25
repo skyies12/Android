@@ -261,6 +261,8 @@ public class GoogleMapActivity extends AppCompatActivity
                 + " 경도:" + String.valueOf(location.getLongitude());
         //현재 위치에 마커 생성하고 이동
         setCurrentLocation(location, markerTitle, markerSnippet);
+        Log.d( "lecture", "위도 : " +  String.valueOf(location.getLatitude()));
+        Log.d( "lecture", "경도 : " +  String.valueOf(location.getLongitude()));
         mCurrentLocatiion = location;
     }
 
@@ -577,16 +579,24 @@ public class GoogleMapActivity extends AppCompatActivity
                     markerOptions.snippet(markerSnippet);
                     int result = getDistance(currentPosition, latLng);
                     Marker item = mGoogleMap.addMarker(markerOptions);
+                    if(item.getTitle() == null) {
+
+                    }
                     placeList.add(new PlaceItem(item.getTitle(), "거리 " + Integer.toString(result) + "m"));
                     previous_marker.add(item);
                 }
                 Log.d( TAG, Integer.toString(placeList.size()));
 
-                for (int i = 0; i < placeList.size(); i++) {
-                    placeItem = new PlaceItem(placeList.get(i).getPlaceTitle(), placeList.get(i).getPlaceDistance());
-                    adapter.addItem(placeItem);
-                    listView1.setAdapter(adapter);
+                if(placeList.size() == 0) {
+                    Toast.makeText( getApplicationContext(), "주변에 영화관이 존재하지 않습니다.", Toast.LENGTH_SHORT ).show();
+                } else {
+                    for (int i = 0; i < placeList.size(); i++) {
+                        placeItem = new PlaceItem(placeList.get(i).getPlaceTitle(), placeList.get(i).getPlaceDistance());
+                        adapter.addItem(placeItem);
+                        listView1.setAdapter(adapter);
+                    }
                 }
+
 
                 //중복 마커 제거
                 HashSet<Marker> hashSet = new HashSet<Marker>();

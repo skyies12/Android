@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             String storage = Environment.getExternalStorageDirectory().getAbsolutePath();
             String fileName = "1_Skyscraper.jpg";
 
-            String folderPath = "/Samsung/";
+            String folderPath = "/test/";
             String fullPath = storage + folderPath;
             Log.d( "lecture", fullPath );
             File filePath;

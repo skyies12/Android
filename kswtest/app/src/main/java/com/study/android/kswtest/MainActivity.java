@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button mBtnGoogleSignOut;
     private TextView mTxtProfileInfo;
     private ImageView mImgProfile;
-    private Button btTicket;
-
     AdView mAdView;
 
      @Override
@@ -115,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
          btnLogin = findViewById(R.id.btnLogin);
          btnSignUp = findViewById(R.id.btnSignUp);
          googlemapbtn = findViewById(R.id.googlemapbtn);
-         btTicket = findViewById( R.id.ticket );
 
          //initializing firebase authentication object
          firebaseAuth = FirebaseAuth.getInstance();
@@ -164,38 +161,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
          initViews();
          initFirebaseAuth();
-    }
-
-    public void Ticketbtn(View v) {
-        Intent intent = getPackageManager().getLaunchIntentForPackage("com.cgv.android.movieapp");
-        if(intent == null) {
-            android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(MainActivity.this);
-
-            builder.setMessage("CGV 앱을 다운 받으시겠습니까?")
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle("알림")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent i = new Intent(android.content.Intent.ACTION_VIEW);
-                            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.cgv.android.movieapp"));
-                            startActivity(i);
-                            dialog.cancel();
-                        }
-                    })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-            android.support.v7.app.AlertDialog alert =builder.create();
-            alert.show();
-        } else {
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
     }
 
     public void MapbtnClicked(View v) {
@@ -284,7 +249,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             btnLogin.setVisibility(View.VISIBLE);
             btnSignUp.setVisibility(View.VISIBLE);
             mImgProfile.setImageResource( R.mipmap.ic_launcher);
-            btTicket.setVisibility( View.GONE );
         } else {
             // 로그인 상태
             textViewUserEmail.setText("반갑습니다.\n"+ user.getEmail());
@@ -294,7 +258,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mImgProfile.setVisibility(View.VISIBLE);
             btnLogin.setVisibility(View.GONE);
             btnSignUp.setVisibility(View.GONE);
-            btTicket.setVisibility( View.VISIBLE );
 
             String userName = user.getDisplayName(); // 채팅에 사용 될 닉네임 설정
             String userEmail = user.getEmail();

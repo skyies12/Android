@@ -91,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:orientation="vertical">
@@ -126,6 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
                     android:onClick="signOut"
                     android:text="로그아웃"
                     android:visibility="gone" />
@@ -157,6 +158,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:background="@drawable/common_google_signin_btn_icon_light_normal_background"
                     android:text="로그아웃"
                     android:visibility="gone" />
 
@@ -170,15 +172,6 @@
                     android:textColor="@color/colorAccent"
                     android:visibility="gone" />
             </LinearLayout>
-
-            <Button
-                android:id="@+id/ticket"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:onClick="Ticketbtn"
-                android:text="영화 예매"
-                android:visibility="gone" />
 
         </LinearLayout>
     </android.support.design.widget.NavigationView>

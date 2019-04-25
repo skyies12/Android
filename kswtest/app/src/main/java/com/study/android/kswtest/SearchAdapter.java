@@ -96,13 +96,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     Toast.makeText(context, "로그인 후 이용가능합니다.", Toast.LENGTH_SHORT).show();
                 } else {
                     String userEmail = user.getEmail();
-                    //Log.d("lecture", "user : " + userEmail );
-
-                    // Toast.makeText(context, String.valueOf(mList.get(position).getTitle()), Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(context,ReviewActivity.class);
-                    intent.putExtra("chatName", String.valueOf(mList.get(position).getTitle()).replace("<b>","").replace( "</b>","" ));
-                    intent.putExtra("userName", userEmail);
-                    context.startActivity(intent);
+                    if(userEmail == null) {
+                        Toast.makeText(context, "잠시 후 다시 눌러주세요.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(context,ReviewActivity.class);
+                        intent.putExtra("chatName", String.valueOf(mList.get(position).getTitle()).replace("<b>","").replace( "</b>","" ));
+                        intent.putExtra("userName", userEmail);
+                        context.startActivity(intent);
+                    }
                 }
             }
         });

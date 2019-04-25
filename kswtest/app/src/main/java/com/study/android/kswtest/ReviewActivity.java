@@ -96,7 +96,6 @@ public class ReviewActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home :
                 finish();
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
             default:
@@ -173,7 +172,7 @@ public class ReviewActivity extends AppCompatActivity {
                                     .setIcon(android.R.drawable.ic_dialog_alert)
                                     .setTitle("알림")
                                     .setCancelable(false)
-                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             databaseReference.child("review").child(CHAT_NAME).child(list.get(position).getKey()).removeValue();
@@ -182,7 +181,7 @@ public class ReviewActivity extends AppCompatActivity {
                                             dialog.cancel();
                                         }
                                     })
-                                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             dialog.cancel();

@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnWebhtml(View v) {
         // 웹 html 부르기
-        web.loadUrl("https://www.google.com");
+        web.loadUrl("http://192.168.0.90:8081/JspServer/tmap.jsp?lat=37.578964&longi=126.975896&title=자경전");
     }
 
     public void btnJSCall(View v) {

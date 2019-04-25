@@ -43,7 +43,7 @@ public class PlaceItemView extends LinearLayout {
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .setTitle("알림")
                                 .setCancelable(false)
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent i = new Intent(android.content.Intent.ACTION_VIEW);
@@ -52,7 +52,7 @@ public class PlaceItemView extends LinearLayout {
                                         dialog.cancel();
                                     }
                                 })
-                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
@@ -78,7 +78,7 @@ public class PlaceItemView extends LinearLayout {
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .setTitle("알림")
                                 .setCancelable(false)
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent i = new Intent(android.content.Intent.ACTION_VIEW);
@@ -87,7 +87,7 @@ public class PlaceItemView extends LinearLayout {
                                         dialog.cancel();
                                     }
                                 })
-                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
@@ -113,7 +113,7 @@ public class PlaceItemView extends LinearLayout {
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .setTitle("알림")
                                 .setCancelable(false)
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent i = new Intent(android.content.Intent.ACTION_VIEW);
@@ -122,7 +122,7 @@ public class PlaceItemView extends LinearLayout {
                                         dialog.cancel();
                                     }
                                 })
-                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                .setNegativeButton("취소", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
