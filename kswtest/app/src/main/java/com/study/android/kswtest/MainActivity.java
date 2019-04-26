@@ -249,6 +249,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             btnLogin.setVisibility(View.VISIBLE);
             btnSignUp.setVisibility(View.VISIBLE);
             mImgProfile.setImageResource( R.mipmap.ic_launcher);
+            textivewDelete.setVisibility(View.GONE);
         } else {
             // 로그인 상태
             textViewUserEmail.setText("반갑습니다.\n"+ user.getEmail());
@@ -258,6 +259,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mImgProfile.setVisibility(View.VISIBLE);
             btnLogin.setVisibility(View.GONE);
             btnSignUp.setVisibility(View.GONE);
+            textivewDelete.setVisibility(View.VISIBLE);
 
             String userName = user.getDisplayName(); // 채팅에 사용 될 닉네임 설정
             String userEmail = user.getEmail();
@@ -351,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             alert_confirm.setNegativeButton("취소", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast.makeText(MainActivity.this, "취소", Toast.LENGTH_LONG).show();
+
                 }
             });
             alert_confirm.show();

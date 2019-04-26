@@ -1,6 +1,8 @@
 package com.study.android.kswtest;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.NavUtils;
@@ -67,16 +69,37 @@ public class FindActivity extends AppCompatActivity implements View.OnClickListe
             progressDialog.show();
             //비밀번호 재설정 이메일 보내기
             String emailAddress = editTextUserEmail.getText().toString().trim();
+
             firebaseAuth.sendPasswordResetEmail(emailAddress)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(FindActivity.this, "이메일을 보냈습니다.", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(FindActivity.this, "이메일을 보냈습니다.", Toast.LENGTH_LONG).show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(FindActivity.this);
+                                builder.setTitle("알림");
+                                builder.setMessage("이메일을 보냈습니다.");
+                                builder.setPositiveButton("확인",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                            }
+                                        });
+                                builder.show();
                                 finish();
                                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                             } else {
-                                Toast.makeText(FindActivity.this, "메일 보내기 실패!", Toast.LENGTH_LONG).show();
+                               // Toast.makeText(FindActivity.this, "메일 보내기 실패!", Toast.LENGTH_LONG).show();
+                                AlertDialog.Builder builder = new AlertDialog.Builder(FindActivity.this);
+                                builder.setTitle("알림");
+                                builder.setMessage("메일 보내기 실패!");
+                                builder.setPositiveButton("확인",
+                                        new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                            }
+                                        });
+                                builder.show();
                             }
                             progressDialog.dismiss();
                         }

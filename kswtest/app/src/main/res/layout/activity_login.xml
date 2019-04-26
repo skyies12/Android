@@ -23,10 +23,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:hint="Enter email"
+        android:hint="E-mail"
         android:inputType="textEmailAddress"
-        app:theme="@style/EditTextStyle"
-        />
+        app:theme="@style/EditTextStyle" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -35,10 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
+        android:hint="Password"
         android:inputType="textPassword"
-        android:hint="Enter password"
-        app:theme="@style/EditTextStyle"
-        />
+        app:theme="@style/EditTextStyle" />
 
     <CheckBox
         android:id="@+id/checkBox"

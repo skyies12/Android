@@ -50,6 +50,7 @@ public class ReviewActivity extends AppCompatActivity {
     private BackPressCloseHandler backPressCloseHandler;
     private ReviewKey reviewKey;
     private ArrayList<ReviewKey> list;
+    private TextView tvTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +60,14 @@ public class ReviewActivity extends AppCompatActivity {
         chat_view = findViewById(R.id.chat_view);
         chat_edit = findViewById(R.id.chat_edit);
         rating = findViewById(R.id.ratingBar1);
-
+        tvTitle = findViewById( R.id.tvtitle );
 
         // 로그인 화면에서 받아온 채팅방 이름, 유저 이름 저장
         Intent intent = getIntent();
         CHAT_NAME = intent.getStringExtra("chatName");
         USER_NAEM = intent.getStringExtra("userName");
+
+        tvTitle.setText(CHAT_NAME);
 
         rating.setStepSize((float) 0.5);        //별 색깔이 1칸씩줄어들고 늘어남 0.5로하면 반칸씩 들어감
         rating.setRating((float) 1.0);      // 처음보여줄때(색깔이 한개도없음) default 값이 0  이다
@@ -126,11 +129,6 @@ public class ReviewActivity extends AppCompatActivity {
         list.add(new ReviewKey(dataSnapshot.getKey()));
         //int i = Integer.parseInt(chatDTO.getMessage());
         //int result = Integer.parseInt(chatDTO.getMessage());
-    }
-
-    private void removeMessage(DataSnapshot dataSnapshot, ArrayAdapter<String> adapter) {
-        ReviewDTO chatDTO = dataSnapshot.getValue(ReviewDTO.class);
-        adapter.remove("아이디 : " + chatDTO.getUserName() + "\n" + "리뷰 : " +  chatDTO.getMessage() + "\n" + "평점 : " + chatDTO.getRating());
     }
 
     private void openChat(String chatName) {

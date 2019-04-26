@@ -96,7 +96,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     Toast.makeText(context, "로그인 후 이용가능합니다.", Toast.LENGTH_SHORT).show();
                 } else {
                     String userEmail = user.getEmail();
-                    if(userEmail == null) {
+                    if(user.getEmail() == null) {
                         Toast.makeText(context, "잠시 후 다시 눌러주세요.", Toast.LENGTH_SHORT).show();
                     } else {
                         Intent intent = new Intent(context,ReviewActivity.class);
